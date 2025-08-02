@@ -9,7 +9,6 @@ admin.initializeApp({
     credential : admin.credential.cert(serviceAccount),
     databaseURL: "https://rest---api-default-rtdb.firebaseio.com/"
 });
-
 const router = express .Router();
 
 const app = express();
@@ -17,6 +16,39 @@ const PORT =  process.env.PORT || 5000;
 
 //Middleware to parse JSON data 
 app.use(express.json());
+
+
+// CRUD operations for the Users 
+// create the new user
+app.post('/users',(req,res)=>{ 
+    const newUser = { id:(),...req.body};
+    users.push(new user);
+    res.status (201).json(newuser);
+});
+
+//Read all Users
+app.get('/users',(req ,res)=> {
+    res.json(users);
+});
+
+//Update the User
+app.put('/users/:id , (req ,res)=>{
+        const index = users.findIndex(u=>u.id ==req.params.id);
+
+
+//Create the New Expense
+app.post('/expenses',(req,res)=>{ 
+    const newExpense = { id:(),...req.body};
+    users.push(new Expense);
+    res.status (201).json(newExpense);});
+
+
+    //Read all Expenses
+app.get('/Expenses',(req ,res)=> {
+    res.json(Expenses);
+});
+    
+                         
 
 // Route to get Users 
 app.get ('/api/users', ( req ,res) => {
@@ -58,36 +90,7 @@ app.listen(PORT, () =>
 
 
    
-
- //.then(userRecord => {
-    //console.log("Successfully created new user: ,userRecord.uid");
-    
-    
-
-
- //.catch(error => {
-    //console.log("Error ")
-  // })
-
- // app.get ("/" , function( req ,res){
-   //res.send('hello')
- // })
-    //console.log('Server running ')
-
-   //app.get('/username' ,(req ,res) => {
-        //res.status(200)
-    //});
-
-    //const users = {
-        //.id: 1,
-        //name:"Femi ola",
-        //username:"Femi",
-        //email: "olluwafemi@sozenetech.com",
-    
-    
-
-
-    router.get('/ ',(req,res) =>  {
+ router.get('/ ',(req,res) =>  {
         console.log(users);
         res.send("users")
     });
@@ -100,3 +103,4 @@ app.listen(PORT, () =>
     });
 
     export default router;
+
